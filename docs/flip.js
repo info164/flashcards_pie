@@ -9,3 +9,5 @@ function nextCard() {
 
 // Initialisation
 flipcards[0].classList.add('active');
+
+Ggggg
