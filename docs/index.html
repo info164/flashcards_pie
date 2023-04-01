@@ -20,6 +20,13 @@
 	<div class="d-grid gap-2">
 		<button id="suivant" class="btn btn-lg btn-primary" type="button">Question suivante</button>
 	</div>
+	<div class="d-grid gap-2">
+		<button id="suivalea" class="btn btn-lg btn-danger" type="button">Question aléatoire</button>
+	</div>	
+	<div>
+		<p> Question : <span id="index"></span></p>
+	</div>
+	
 	  
 	  
 	<script>
@@ -509,14 +516,22 @@
 			"alternate-images/237.png"
 		];
 		// On crée une variable pour stocker l'index de l'image affichée
-		var index = 0;
+		// var index = 0;
+		// On crée une variable pour stocker l'index de l'image affichée
+		// var index = Math.floor(Math.random() * images.length);
+		var index = 0
 
 		// On récupère les éléments HTML correspondants
 		var galerie = document.getElementById("galerie");
 		var suivant = document.getElementById("suivant");
+		var suivalea = document.getElementById("suivalea");
+		var indexHtml = document.getElementById("index");
 
 		// On affiche la première image dans la galerie
 		galerie.innerHTML = "<img src='" + images[index] + "'>";
+		
+		// On affiche l'index actuel sur la page HTML
+		indexHtml.innerHTML = " " + index + " / " + images.length;
 
 		// On ajoute un écouteur d'événement pour le clic sur l'image
 		galerie.addEventListener("click", function() {
@@ -528,17 +543,30 @@
 		suivant.addEventListener("click", function() {
 			// On incrémente l'index de l'image affichée
 			index++;
-
 			// Si on a atteint la fin du tableau, on revient au début
 			if (index >= images.length) {
 				index = 0;
 			}
-
-
-
 			// On affiche la nouvelle image dans la galerie
 			galerie.innerHTML = "<img src='" + images[index] + "'>";
+				// On affiche l'index actuel sur la page HTML
+			indexHtml.innerHTML = " " + index + " / " + images.length;
 		});
+		
+		// On ajoute un écouteur d'événement pour le clic sur le bouton "suivant"
+		suivalea.addEventListener("click", function() {
+			// On incrémente l'index de l'image affichée de manière aléatoire
+			index = Math.floor(Math.random() * images.length);
+			// Si on a atteint la fin du tableau, on revient au début
+			if (index >= images.length) {
+				index = 0;
+			}
+			// On affiche la nouvelle image dans la galerie
+			galerie.innerHTML = "<img src='" + images[index] + "'>";
+				// On affiche l'index actuel sur la page HTML
+			indexHtml.innerHTML = " " + index + " / " + images.length;
+		});
+
 
 		// On ajoute un écouteur d'événement pour les touches de redirection
 		suivant.addEventListener("keydown", function(event) {
